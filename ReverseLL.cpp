@@ -6,7 +6,6 @@ class Node
 public:
     int value;
     Node* next;
-
 };
 
 void push(Node** head, int data)
@@ -25,30 +24,36 @@ void traverse(Node* head)
         cout << temp->value << " -> ";
         temp = temp->next;
     }
-    cout << "NULL" << endl;
+    cout <<" NULL"<<endl;
 }
 
-void length(Node* head)
+void reverse(Node* head)
 {
-    Node* curr = head;
-    int count = 0;
-    while(curr != NULL)
+    Node* current = head;
+    Node* next = NULL;
+    Node* prev = NULL;
+    while(current != NULL)
     {
-        count++;
-        curr = curr->next;
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
     }
-    cout << "The length of the linked list : " << count << endl;
+    head = prev;
 }
 
 int main()
 {
     Node* head = NULL;
-    push(&head, 10);
-    push(&head, 30);
-    push(&head, 11);
-    push(&head, 21);
-    push(&head, 14);
+    push(&head,1);
+    push(&head,12);
+    push(&head,15);
+    push(&head,13);
+    push(&head,71);
+    push(&head,12);
+    push(&head,100);
     traverse(head);
-    length(head);
+    reverse(head);
+    traverse(head);
     return 0;
 }
